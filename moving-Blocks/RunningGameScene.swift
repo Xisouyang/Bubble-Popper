@@ -11,6 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    /* setup variables */
     let top = CGPoint(x: 0, y: 550);
     let border = 275;
     let bottom : CGFloat = 50;
@@ -19,9 +20,12 @@ class GameScene: SKScene {
     var scoreArr: [SKLabelNode] = [];
     var endScene = EndGameScene();
     
+    // Called when the scene has been displayed
     override func didMove(to view: SKView) {
-        // Called when the scene has been displayed
+        
         scoreLabel();
+        
+        /* starts the game */
         let delay = SKAction.wait(forDuration: 0.8);
         let runSequence = SKAction.run {
             self.startSequence();
@@ -31,18 +35,20 @@ class GameScene: SKScene {
         self.run(goForev);
     }
     
+    /* creates block, start actions */
     func startSequence() {
         let random = arc4random_uniform(50);
         let node = createBlock(size: CGSize(width: CGFloat(random) + 10, height: CGFloat(random) + 10))
         randomPos(node: node);
         blockActions(node: node);
     }
-    
+    /* returns random color for blocks */
     func randomColor() -> UIColor {
         let colorArr : [UIColor] = [.blue, .cyan, .yellow, .green, .orange, .purple, .red ]
         return colorArr[Int(arc4random_uniform(7))];
     }
     
+    /* creates block */
     func createBlock(size: CGSize) -> SKSpriteNode {
         let node = SKSpriteNode(texture: nil, color: randomColor(), size: size);
         node.name = "block";
@@ -50,6 +56,7 @@ class GameScene: SKScene {
         return node;
     }
     
+    /* create score label */
     func scoreLabel() {
         let score = SKLabelNode(text: "1");
         let fontSize: CGFloat = 40;
@@ -67,15 +74,23 @@ class GameScene: SKScene {
 //        }
     }
     
+    /* randomize start position of block */
     func randomPos(node: SKSpriteNode) {
         node.position.y = CGFloat(arc4random_uniform(UInt32(top.y)))
         node.position.x = CGFloat(arc4random_uniform(UInt32(border)) + 50);
     }
     
+    /* delete block */
     func deleteBlock(node: SKSpriteNode) {
         node.removeFromParent();
     }
     
+    /*
+       all actions of block
+         - move up
+         - rotate
+         - delete
+     */
     func blockActions(node: SKSpriteNode) {
         let randomTime = arc4random_uniform(10);
         let moveUp = SKAction.moveBy(x: 0, y: top.y - node.position.y, duration: TimeInterval(randomTime))
@@ -83,6 +98,7 @@ class GameScene: SKScene {
             self.deleteBlock(node: node)
             self.score -= 1;
             
+            /* lose condition */
             if self.score == 0 {
                 // let reveal = SKTransition.reveal(with: .down,
                    //                               duration: 1);
@@ -112,6 +128,7 @@ class GameScene: SKScene {
         }
     }
     
+    /* when block touched, delete block and increase score */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let location = touch.location(in: self);
