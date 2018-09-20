@@ -15,9 +15,10 @@ class GameScene: SKScene {
     let border = 275;
     let bottom : CGFloat = 50;
     let angle : CGFloat = 30;
-    var score = 0;
+    var score = 1;
     var scoreArr: [SKLabelNode] = [];
-  
+    var endScene = EndGameScene();
+    
     override func didMove(to view: SKView) {
         // Called when the scene has been displayed
         scoreLabel();
@@ -50,7 +51,7 @@ class GameScene: SKScene {
     }
     
     func scoreLabel() {
-        let score = SKLabelNode(text: "0");
+        let score = SKLabelNode(text: "1");
         let fontSize: CGFloat = 40;
         score.color = UIColor.white;
         score.position = CGPoint(x: (self.size.width / 2), y: 550);
@@ -80,6 +81,17 @@ class GameScene: SKScene {
         let moveUp = SKAction.moveBy(x: 0, y: top.y - node.position.y, duration: TimeInterval(randomTime))
         let delete = SKAction.run {
             self.deleteBlock(node: node)
+            self.score -= 1;
+            
+            if self.score == 0 {
+                // let reveal = SKTransition.reveal(with: .down,
+                   //                               duration: 1);
+                 //self.scene?.view?.presentScene(, transition: reveal)
+                
+                self.scene?.view?.presentScene(EndGameScene(size: self.size))
+            }
+            
+            self.scoreArr[0].text = String(self.score);
         }
         let blockSequence = SKAction.sequence([moveUp, delete]);
         
@@ -95,6 +107,9 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        if score < 0 {
+            scoreArr[0].text = "Game Over";
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
