@@ -14,11 +14,11 @@ class GameScene: SKScene {
     let top = CGPoint(x: 0, y: 550);
     let border = 275;
     let bottom : CGFloat = 50;
-  
+    let angle : CGFloat = 30;
   
     override func didMove(to view: SKView) {
         // Called when the scene has been displayed
-        let delay = SKAction.wait(forDuration: 2);
+        let delay = SKAction.wait(forDuration: 0.5);
         let runSequence = SKAction.run {
             self.startSequence();
         }
@@ -51,7 +51,10 @@ class GameScene: SKScene {
             node.removeFromParent();
         }
         let blockSequence = SKAction.sequence([moveUp, delete]);
-        node.run(blockSequence);
+        let rotate = SKAction.rotate(byAngle: angle, duration: 5);
+        let rotateForever = SKAction.repeatForever(rotate);
+        let actionGroup = SKAction.group([rotateForever, blockSequence]);
+        node.run(actionGroup);
     }
     
     override func update(_ currentTime: TimeInterval) {
