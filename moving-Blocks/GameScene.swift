@@ -18,9 +18,13 @@ class GameScene: SKScene {
   
     override func didMove(to view: SKView) {
         // Called when the scene has been displayed
-        for _ in 0...2 {
-            startSequence();
+        let delay = SKAction.wait(forDuration: 2);
+        let runSequence = SKAction.run {
+            self.startSequence();
         }
+        let start = SKAction.sequence([delay, runSequence]);
+        let goForev = SKAction.repeatForever(start);
+        self.run(goForev);
     }
     
     func startSequence() {
@@ -41,7 +45,7 @@ class GameScene: SKScene {
     }
     
     func blockActions(node: SKSpriteNode) {
-        let randomTime = arc4random_uniform(10) + 2;
+        let randomTime = arc4random_uniform(10);
         let moveUp = SKAction.moveBy(x: 0, y: top.y - node.position.y, duration: TimeInterval(randomTime))
         let delete = SKAction.run {
             node.removeFromParent();
@@ -49,8 +53,6 @@ class GameScene: SKScene {
         let blockSequence = SKAction.sequence([moveUp, delete]);
         node.run(blockSequence);
     }
-    
-    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
