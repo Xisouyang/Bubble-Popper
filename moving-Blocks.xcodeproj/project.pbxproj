@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5D0759EF2154500C00AC9D50 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0759EE2154500C00AC9D50 /* EndGameScene.swift */; };
+		5DE790482160553B0092263A /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE790472160553B0092263A /* Labels.swift */; };
+		5DF18AAD215ADF8200C03102 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF18AAC215ADF8200C03102 /* Box.swift */; };
 		D8A7EBED214AA9C30022E043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7EBEC214AA9C30022E043 /* AppDelegate.swift */; };
 		D8A7EBF3214AA9C30022E043 /* RunningGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7EBF2214AA9C30022E043 /* RunningGameScene.swift */; };
 		D8A7EBF5214AA9C30022E043 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7EBF4214AA9C30022E043 /* GameViewController.swift */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		5D0759EE2154500C00AC9D50 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
+		5DE790472160553B0092263A /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
+		5DF18AAC215ADF8200C03102 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		D8A7EBE9214AA9C30022E043 /* moving-Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moving-Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A7EBEC214AA9C30022E043 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8A7EBF2214AA9C30022E043 /* RunningGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningGameScene.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 			children = (
 				D8A7EBEC214AA9C30022E043 /* AppDelegate.swift */,
 				D8A7EBF2214AA9C30022E043 /* RunningGameScene.swift */,
+				5DF18AAC215ADF8200C03102 /* Box.swift */,
+				5DE790472160553B0092263A /* Labels.swift */,
 				5D0759EE2154500C00AC9D50 /* EndGameScene.swift */,
 				D8A7EBF4214AA9C30022E043 /* GameViewController.swift */,
 				D8A7EBF6214AA9C30022E043 /* Main.storyboard */,
@@ -143,6 +149,8 @@
 			files = (
 				5D0759EF2154500C00AC9D50 /* EndGameScene.swift in Sources */,
 				D8A7EBF3214AA9C30022E043 /* RunningGameScene.swift in Sources */,
+				5DE790482160553B0092263A /* Labels.swift in Sources */,
+				5DF18AAD215ADF8200C03102 /* Box.swift in Sources */,
 				D8A7EBF5214AA9C30022E043 /* GameViewController.swift in Sources */,
 				D8A7EBED214AA9C30022E043 /* AppDelegate.swift in Sources */,
 			);
