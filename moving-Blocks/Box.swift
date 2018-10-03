@@ -33,17 +33,10 @@ class Box: SKSpriteNode {
         
         if position.y > 500 || position.y < 100 {
             position.y = CGFloat(arc4random_uniform(300) + 50);
-//            print("working y");
-//            print(position.x)
-//            print(position.y)
-
         }
         
         if position.x > 370 || position.x < 30 {
             position.y = CGFloat(arc4random_uniform(200) + 50);
-//            print("working x");
-//            print(position.x)
-//            print(position.y)
         }
     }
     
@@ -72,7 +65,7 @@ class Box: SKSpriteNode {
         
         let delete = SKAction.run {
             self.deleteBlock(node: node)
-            score -= 1;
+            score -= Int(arc4random_uniform(4) + 1);
             
           scoreArr[0].text = String(score);
         }

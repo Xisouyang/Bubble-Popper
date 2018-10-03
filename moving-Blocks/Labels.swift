@@ -22,6 +22,19 @@ class Labels: SKLabelNode {
                 
     }
     
+    //Fades the point labels
+    func pointLabelAction() {
+        let fadeDuration = 1.5;
+        let point = self;
+        
+        let fade = SKAction.fadeOut(withDuration: TimeInterval(fadeDuration));
+        let remove = SKAction.run {
+            point.removeFromParent();
+        }
+        let labelSequence = SKAction.sequence([fade, remove])
+        point.run(labelSequence);
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

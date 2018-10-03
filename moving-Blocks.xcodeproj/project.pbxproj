@@ -297,7 +297,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 753UQ7TNXJ;
+				DEVELOPMENT_TEAM = R7Y8QKEC95;
 				INFOPLIST_FILE = "$(SRCROOT)/moving-Blocks/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -315,7 +315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 753UQ7TNXJ;
+				DEVELOPMENT_TEAM = R7Y8QKEC95;
 				INFOPLIST_FILE = "$(SRCROOT)/moving-Blocks/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

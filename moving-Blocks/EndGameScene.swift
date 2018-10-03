@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-
+//Ends the game
 class EndGameScene: SKScene {
     
     let label = SKLabelNode(text: "Game Over");

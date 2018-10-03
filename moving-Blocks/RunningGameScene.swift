@@ -47,6 +47,22 @@ class RunningGameScene: SKScene {
 //            print("Family: \(family) Font names: \(names)")
 //        }
     }
+    
+    //helper function to add point labels when user successfully clicks node
+    func addPoint(node: SKSpriteNode) -> String {
+        
+        let addition = "+";
+        let pointsStr = String(arc4random_uniform(4) + 1)
+        let buffer: CGFloat = 25;
+        let aNode = node;
+        
+        aNode.position.x = aNode.position.x - buffer;
+        let pointLabel = Labels(text: (addition + pointsStr), color: .white, fontSize: 25, font: "Futura-Bold", position: aNode.position);
+        addChild(pointLabel);
+        pointLabel.pointLabelAction();
+        
+        return pointsStr;
+    }
 
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
@@ -62,7 +78,8 @@ class RunningGameScene: SKScene {
             let node = atPoint(location);
             if node.name == "block" {
                 node.removeFromParent();
-                score += 1;
+                let pointStr = addPoint(node: node as! SKSpriteNode)
+                score += Int(pointStr)!;
                 scoreArr[0].text = String(score);
             }
         }
