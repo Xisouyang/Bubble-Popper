@@ -12,15 +12,42 @@ import GameplayKit
 //Ends the game
 class EndGameScene: SKScene {
     
-    let label = SKLabelNode(text: "Game Over");
-    
     override func didMove(to view: SKView) {
         
+        let endName = "OverLabel"
+        let restartName: String? = "ReplayLabel"
         let fontSize: CGFloat = 40;
-        label.color = UIColor.white;
-        label.position = CGPoint(x: (self.size.width / 2), y: 550);
-        label.fontName = "Futura-Bold";
-        label.fontSize = fontSize;
-        addChild(label);
+        let endText = "Game Over";
+        let restartText = "Restart";
+        let color = UIColor.white;
+        let font = "Futura-Bold";
+        let endPosition = CGPoint(x: (self.size.width / 2), y: 550);
+        let restartPosition = CGPoint(x: (self.size.width / 2), y: 450);
+        
+        let endLabel = Labels(text: endText, color: color, fontSize: fontSize, font: font, position: endPosition, name: endName);
+        addChild(endLabel)
+        
+        let restartLabel = Labels(text: restartText, color: .white, fontSize: 20, font: font, position: restartPosition, name: restartName!);
+        addChild(restartLabel)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        if let touch = touches.first {
+            let location = touch.location(in: self);
+            let node = atPoint(location);
+            if node.name == "ReplayLabel" {
+                let skView = self.view as SKView?
+                let scene = RunningGameScene();
+                scene.size = (skView?.bounds.size)!;
+                
+                guard let targetView = self.scene?.view else {
+                    print("self.scene is nil")
+                    return
+                }
+                
+                targetView.presentScene(RunningGameScene(size: self.size))
+                // skView?.presentScene(scene);
+            }
+        }
     }
 }

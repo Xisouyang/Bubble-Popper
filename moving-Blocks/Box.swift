@@ -31,12 +31,12 @@ class Box: SKSpriteNode {
         position.x = CGFloat(arc4random_uniform(UInt32((view.scene?.size.width)!)));
         position.y = CGFloat(arc4random_uniform(UInt32((view.scene?.size.height)!))) - CGFloat(buffer);
         
-        if position.y > 500 || position.y < 100 {
-            position.y = CGFloat(arc4random_uniform(300) + 50);
+        if position.y > 400 || position.y < 100 {
+            position.y = CGFloat(arc4random_uniform(200) + 50);
         }
         
-        if position.x > 370 || position.x < 30 {
-            position.y = CGFloat(arc4random_uniform(200) + 50);
+        if position.x > 250 || position.x < 30 {
+            position.y = CGFloat(arc4random_uniform(100) + 50);
         }
     }
     

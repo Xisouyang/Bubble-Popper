@@ -17,12 +17,16 @@ class RunningGameScene: SKScene {
     // Called when the scene has been displayed
     override func didMove(to view: SKView) {
         
+        scoreArr = [];
+        score = 1;
         scoreLabel()
+//        print("we here");
         
         /* starts the game */
         let delay = SKAction.wait(forDuration: 1);
         let runSequence = SKAction.run {
             self.startSequence();
+//            print("sup")
         }
         let start = SKAction.sequence([delay, runSequence]);
         let goForev = SKAction.repeatForever(start);
@@ -34,11 +38,12 @@ class RunningGameScene: SKScene {
         let node = Box(view: self.view!);
         addChild(node);
         node.blockActions(node: node);
+//        print("poop")
     }
     
     /* create score label */
     func scoreLabel() {
-        let score = Labels(text: "1", color: .white, fontSize: 40, font: "Futura-Bold", position: CGPoint(x: (self.size.width / 2), y: 550));
+        let score = Labels(text: "1", color: .white, fontSize: 40, font: "Futura-Bold", position: CGPoint(x: (self.size.width / 2), y: 550), name: "scoreLabel");
         scoreArr.append(score);
         addChild(score);
 
@@ -48,7 +53,7 @@ class RunningGameScene: SKScene {
 //        }
     }
     
-    //helper function to add point labels when user successfully clicks node
+    /* helper function to add point labels when user successfully clicks node */
     func addPoint(node: SKSpriteNode) -> String {
         
         let addition = "+";
@@ -57,7 +62,7 @@ class RunningGameScene: SKScene {
         let aNode = node;
         
         aNode.position.x = aNode.position.x - buffer;
-        let pointLabel = Labels(text: (addition + pointsStr), color: .white, fontSize: 25, font: "Futura-Bold", position: aNode.position);
+        let pointLabel = Labels(text: (addition + pointsStr), color: .white, fontSize: 25, font: "Futura-Bold", position: aNode.position, name: "addPointsLabel");
         addChild(pointLabel);
         pointLabel.pointLabelAction();
         
@@ -69,6 +74,7 @@ class RunningGameScene: SKScene {
         if score == 0 || score < 0 {
             self.scene?.view?.presentScene(EndGameScene(size: self.size))
         }
+        
     }
     
     /* when block touched, delete block and increase score */

@@ -11,20 +11,19 @@ import SpriteKit
 
 class Labels: SKLabelNode {
         
-    
-    init(text: String, color: UIColor, fontSize: CGFloat, font: String, position: CGPoint) {
+    init(text: String, color: UIColor, fontSize: CGFloat, font: String, position: CGPoint, name: String) {
         super.init()
         self.text = text;
         self.color = color;
         self.fontSize = fontSize;
         self.fontName = font;
         self.position = position;
-                
+        self.name = name;
     }
     
-    //Fades the point labels
+    /* Fades the point labels */
     func pointLabelAction() {
-        let fadeDuration = 1.5;
+        let fadeDuration = 0.75;
         let point = self;
         
         let fade = SKAction.fadeOut(withDuration: TimeInterval(fadeDuration));
