@@ -12,6 +12,7 @@ import GameplayKit
 var score = 1;
 var scoreArr: [SKLabelNode] = [];
 
+
 class RunningGameScene: SKScene {
     
     // Called when the scene has been displayed
@@ -20,13 +21,13 @@ class RunningGameScene: SKScene {
         scoreArr = [];
         score = 1;
         scoreLabel()
-//        print("we here");
+        pausePlayButtons()
+        
         
         /* starts the game */
         let delay = SKAction.wait(forDuration: 1);
         let runSequence = SKAction.run {
             self.startSequence();
-//            print("sup")
         }
         let start = SKAction.sequence([delay, runSequence]);
         let goForev = SKAction.repeatForever(start);
@@ -46,15 +47,19 @@ class RunningGameScene: SKScene {
         score.zPosition = 4;
         scoreArr.append(score);
         addChild(score);
+    }
+    
+    func pausePlayButtons() {
         
-//        let test = Labels(text: "test", color: .white, fontSize: 20, font: "Futura-Bold", position: CGPoint(x: (self.size.width / 2), y: 550), name: "testLabel")
-//        test.zPosition = 3;
-//        addChild(test)
-
-//        for family in UIFont.familyNames.sorted() {
-//            let names = UIFont.fontNames(forFamilyName: family)
-//            print("Family: \(family) Font names: \(names)")
-//        }
+        let playText = "Play"
+        let pauseText = "Pause"
+        let fontSize: CGFloat = 15
+        let color = UIColor.white
+        let font = "Futura-Bold";
+        let position = CGPoint(x: (self.size.width / 2) + 120, y: 600);
+        
+        let pauseLabel = Labels(text: pauseText, color: color, fontSize: fontSize, font: font, position: position, name: "pause")
+        addChild(pauseLabel)
     }
     
     /* helper function to add point labels when user successfully clicks node */
@@ -86,15 +91,27 @@ class RunningGameScene: SKScene {
         if let touch = touches.first {
             let location = touch.location(in: self);
             let node = atPoint(location);
+            
             if node.name == "block" {
                 node.removeFromParent();
                 let pointStr = addPoint(node: node as! SKSpriteNode)
                 score += Int(pointStr)!;
                 scoreArr[0].text = String(score);
             }
-//            if node.name == "testLabel" {
-//                print("work")
-//            }
+            
+            if node.name == "pause" {
+                self.view?.isPaused = !(self.view?.isPaused)!
+            }
+      
         }
     }
 }
+
+//        let test = Labels(text: "test", color: .white, fontSize: 20, font: "Futura-Bold", position: CGPoint(x: (self.size.width / 2), y: 550), name: "testLabel")
+//        test.zPosition = 3;
+//        addChild(test)
+
+//        for family in UIFont.familyNames.sorted() {
+//            let names = UIFont.fontNames(forFamilyName: family)
+//            print("Family: \(family) Font names: \(names)")
+//        }
