@@ -38,14 +38,18 @@ class RunningGameScene: SKScene {
         let node = Box(view: self.view!);
         addChild(node);
         node.blockActions(node: node);
-//        print("poop")
     }
     
     /* create score label */
     func scoreLabel() {
         let score = Labels(text: "1", color: .white, fontSize: 40, font: "Futura-Bold", position: CGPoint(x: (self.size.width / 2), y: 550), name: "scoreLabel");
+        score.zPosition = 4;
         scoreArr.append(score);
         addChild(score);
+        
+//        let test = Labels(text: "test", color: .white, fontSize: 20, font: "Futura-Bold", position: CGPoint(x: (self.size.width / 2), y: 550), name: "testLabel")
+//        test.zPosition = 3;
+//        addChild(test)
 
 //        for family in UIFont.familyNames.sorted() {
 //            let names = UIFont.fontNames(forFamilyName: family)
@@ -88,6 +92,9 @@ class RunningGameScene: SKScene {
                 score += Int(pointStr)!;
                 scoreArr[0].text = String(score);
             }
+//            if node.name == "testLabel" {
+//                print("work")
+//            }
         }
     }
 }
