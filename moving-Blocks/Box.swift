@@ -20,7 +20,7 @@ class Box: SKSpriteNode {
     
     
     func randomColor() -> UIColor {
-        let colorArr : [UIColor] = [.blue, .cyan, .yellow, .green, .orange, .purple, .red ]
+        let colorArr : [UIColor] = [.blue, .cyan, .yellow, .green, .orange, .purple, .red]
         return colorArr[Int(arc4random_uniform(7))];
     }
     
@@ -32,8 +32,13 @@ class Box: SKSpriteNode {
         let xBuffer = CGFloat(50)
         let yBuffer = CGFloat(100)
         
-        name = "block";
         color = randomColor();
+        
+        if color == .red {
+            name = "bomb"
+        } else {
+            name = "block"
+        }
         position.x = xPos
         position.y = yPos
         

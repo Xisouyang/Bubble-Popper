@@ -25,7 +25,7 @@ class RunningGameScene: SKScene {
         
         
         /* starts the game */
-        let delay = SKAction.wait(forDuration: 2);
+        let delay = SKAction.wait(forDuration: 0.5);
         let runSequence = SKAction.run {
             self.startSequence();
         }
@@ -69,9 +69,23 @@ class RunningGameScene: SKScene {
         let pointsStr = String(arc4random_uniform(4) + 1)
         let buffer: CGFloat = 25;
         let aNode = node;
-        
         aNode.position.x = aNode.position.x - buffer;
+        
         let pointLabel = Labels(text: (addition + pointsStr), color: .white, fontSize: 25, font: "Futura-Bold", position: aNode.position, name: "addPointsLabel");
+        addChild(pointLabel);
+        pointLabel.pointLabelAction();
+        
+        return pointsStr;
+    }
+    
+    func subtractPoint(node: SKSpriteNode) -> String {
+        let subtraction = "-";
+        let pointsStr = String(arc4random_uniform(4) + 1)
+        let buffer: CGFloat = 25;
+        let aNode = node;
+        aNode.position.x = aNode.position.x - buffer;
+        
+        let pointLabel = Labels(text: (subtraction + pointsStr), color: .white, fontSize: 25, font: "Futura-Bold", position: aNode.position, name: "addPointsLabel");
         addChild(pointLabel);
         pointLabel.pointLabelAction();
         
@@ -97,6 +111,12 @@ class RunningGameScene: SKScene {
                 let pointStr = addPoint(node: node as! SKSpriteNode)
                 score += Int(pointStr)!;
                 scoreArr[0].text = String(score);
+                
+            } else if node.name == "bomb" {
+                node.removeFromParent()
+                let pointStr = subtractPoint(node: node as! SKSpriteNode)
+                score -= Int(pointStr)!
+                scoreArr[0].text = String(score)
             }
             
             if node.name == "pause" {
