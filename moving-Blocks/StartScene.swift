@@ -21,6 +21,8 @@ class StartScene: SKScene {
         let titlePosition = CGPoint(x: (self.size.width / 2), y: 550);
         let startButtonPosition = CGPoint(x: (self.size.width / 2), y: 450);
         
+        print(view.scene?.size)
+        
         
         let titleLabel = Labels(text: titleText, color: color, fontSize: fontSize, font: font, position: titlePosition, name: "title")
         addChild(titleLabel)

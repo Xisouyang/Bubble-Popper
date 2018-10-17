@@ -26,18 +26,27 @@ class Box: SKSpriteNode {
     
     init(view: SKView) {
         super.init(texture: nil, color: .red, size: CGSize(width: CGFloat(random) + 10, height: CGFloat(random) + 10))
+        
+        let xPos = CGFloat(arc4random_uniform(UInt32((view.scene?.size.width)!)))
+        let yPos = CGFloat(arc4random_uniform(UInt32((view.scene?.size.height)!)))
+        let xBuffer = CGFloat(50)
+        let yBuffer = CGFloat(100)
+        
         name = "block";
         color = randomColor();
-        position.x = CGFloat(arc4random_uniform(UInt32((view.scene?.size.width)!)));
-        position.y = CGFloat(arc4random_uniform(UInt32((view.scene?.size.height)!))) - CGFloat(buffer);
+        position.x = xPos
+        position.y = yPos
         
-        if position.y > 400 || position.y < 100 {
-            position.y = CGFloat(arc4random_uniform(200) + 50);
+        if position.y > 350 || position.y < 100 {
+            position.y = CGFloat(arc4random_uniform(100)) + yBuffer;
         }
         
-        if position.x > 250 || position.x < 30 {
-            position.y = CGFloat(arc4random_uniform(100) + 50);
+        if position.x > 250 || position.x < 50 {
+            position.x = CGFloat(arc4random_uniform(50)) + xBuffer;
         }
+        
+        print(position.x)
+        print(position.y)
     }
     
     
@@ -60,7 +69,7 @@ class Box: SKSpriteNode {
      - delete
      */
     func blockActions(node: SKSpriteNode) {
-        let randomTime = arc4random_uniform(10);
+        let randomTime = arc4random_uniform(15);
         let moveUp = SKAction.moveBy(x: 0, y: top.y - node.position.y, duration: TimeInterval(randomTime))
         
         let delete = SKAction.run {

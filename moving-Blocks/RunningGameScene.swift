@@ -21,11 +21,11 @@ class RunningGameScene: SKScene {
         scoreArr = [];
         score = 1;
         scoreLabel()
-        pausePlayButtons()
+        createPauseButton()
         
         
         /* starts the game */
-        let delay = SKAction.wait(forDuration: 1);
+        let delay = SKAction.wait(forDuration: 2);
         let runSequence = SKAction.run {
             self.startSequence();
         }
@@ -49,7 +49,7 @@ class RunningGameScene: SKScene {
         addChild(score);
     }
     
-    func pausePlayButtons() {
+    func createPauseButton() {
         
         let playText = "Play"
         let pauseText = "Pause"
