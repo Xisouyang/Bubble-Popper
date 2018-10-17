@@ -62,11 +62,30 @@ class RunningGameScene: SKScene {
         addChild(pauseLabel)
     }
     
-    /* helper function to add point labels when user successfully clicks node */
     func addPoint(node: SKSpriteNode) -> String {
+        let size = node.size
+        var pointStr = "1"
+        switch size {
+        case let size where size.width >= CGFloat(20) && size.width < CGFloat(30):
+            pointStr = String(4)
+            break
+        case let size where size.width >= CGFloat(30) && size.width < CGFloat(40):
+            pointStr = String(3)
+            break
+        case let size where size.width >= CGFloat(40) && size.width <= CGFloat(50):
+            pointStr = String(2)
+            break
+        default:
+            print("error")
+        }
+        return pointStr
+    }
+    
+    /* helper function to add point labels when user successfully clicks node */
+    func addPointLabel(node: SKSpriteNode) -> String {
         
         let addition = "+";
-        let pointsStr = String(arc4random_uniform(4) + 1)
+        let pointsStr = addPoint(node: node)
         let buffer: CGFloat = 25;
         let aNode = node;
         aNode.position.x = aNode.position.x - buffer;
@@ -78,7 +97,7 @@ class RunningGameScene: SKScene {
         return pointsStr;
     }
     
-    func subtractPoint(node: SKSpriteNode) -> String {
+    func subtractPointLabel(node: SKSpriteNode) -> String {
         let subtraction = "-";
         let pointsStr = String(arc4random_uniform(4) + 1)
         let buffer: CGFloat = 25;
@@ -108,13 +127,13 @@ class RunningGameScene: SKScene {
             
             if node.name == "block" {
                 node.removeFromParent();
-                let pointStr = addPoint(node: node as! SKSpriteNode)
+                let pointStr = addPointLabel(node: node as! SKSpriteNode)
                 score += Int(pointStr)!;
                 scoreArr[0].text = String(score);
                 
             } else if node.name == "bomb" {
                 node.removeFromParent()
-                let pointStr = subtractPoint(node: node as! SKSpriteNode)
+                let pointStr = subtractPointLabel(node: node as! SKSpriteNode)
                 score -= Int(pointStr)!
                 scoreArr[0].text = String(score)
             }

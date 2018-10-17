@@ -14,7 +14,7 @@ class Box: SKSpriteNode {
     /* setup variables */
     let top = CGPoint(x: 0, y: 550);
     let angle : CGFloat = 30;
-    let random = arc4random_uniform(50);
+    let random = arc4random_uniform(30);
     var buffer = 100;
     let gameInstance = RunningGameScene();
     
@@ -25,7 +25,7 @@ class Box: SKSpriteNode {
     }
     
     init(view: SKView) {
-        super.init(texture: nil, color: .red, size: CGSize(width: CGFloat(random) + 10, height: CGFloat(random) + 10))
+        super.init(texture: nil, color: .red, size: CGSize(width: CGFloat(random) + 20, height: CGFloat(random) + 20))
         
         let xPos = CGFloat(arc4random_uniform(UInt32((view.scene?.size.width)!)))
         let yPos = CGFloat(arc4random_uniform(UInt32((view.scene?.size.height)!)))

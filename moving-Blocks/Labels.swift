@@ -21,6 +21,7 @@ class Labels: SKLabelNode {
         self.name = name;
     }
     
+    
     /* Fades the point labels */
     func pointLabelAction() {
         let fadeDuration = 0.75;
