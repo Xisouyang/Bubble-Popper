@@ -12,20 +12,27 @@ import GameplayKit
 var score = 1;
 var scoreArr: [SKLabelNode] = [];
 
+enum GameState {
+    case play
+    case pause
+}
+var state: GameState = .play
+
 
 class RunningGameScene: SKScene {
+    
     
     // Called when the scene has been displayed
     override func didMove(to view: SKView) {
         
         scoreArr = [];
         score = 1;
-        scoreLabel()
-        createPauseButton()
         
+        scoreLabel()
+        createStateButtons()
         
         /* starts the game */
-        let delay = SKAction.wait(forDuration: 0.5);
+        let delay = SKAction.wait(forDuration: 2);
         let runSequence = SKAction.run {
             self.startSequence();
         }
@@ -33,6 +40,7 @@ class RunningGameScene: SKScene {
         let goForev = SKAction.repeatForever(start);
         self.run(goForev);
     }
+    
     
     /* creates block, start actions */
     func startSequence() {
@@ -44,22 +52,18 @@ class RunningGameScene: SKScene {
     /* create score label */
     func scoreLabel() {
         let score = Labels(text: "1", color: .white, fontSize: 40, font: "Futura-Bold", position: CGPoint(x: (self.size.width / 2), y: 550), name: "scoreLabel");
-        score.zPosition = 4;
+//        score.zPosition = 4;
         scoreArr.append(score);
         addChild(score);
     }
     
-    func createPauseButton() {
+    func createStateButtons() {
         
-        let playText = "Play"
-        let pauseText = "Pause"
-        let fontSize: CGFloat = 15
-        let color = UIColor.white
-        let font = "Futura-Bold";
-        let position = CGPoint(x: (self.size.width / 2) + 120, y: 600);
+        let position = CGPoint(x: (self.size.width / 2) + 140, y: 600);
+        let size = CGSize(width: 40, height: 40)
         
-        let pauseLabel = Labels(text: pauseText, color: color, fontSize: fontSize, font: font, position: position, name: "pause")
-        addChild(pauseLabel)
+        var pauseButton = Buttons(texture: SKTexture(imageNamed: "pause-asset"), position: position, isHidden: false, name: "pauseButton")
+        addChild(pauseButton)
     }
     
     func addPoint(node: SKSpriteNode) -> String {
@@ -116,32 +120,46 @@ class RunningGameScene: SKScene {
         if score == 0 || score < 0 {
             self.scene?.view?.presentScene(EndGameScene(size: self.size))
         }
-        
     }
     
     /* when block touched, delete block and increase score */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-            let location = touch.location(in: self);
-            let node = atPoint(location);
-            
-            if node.name == "block" {
-                node.removeFromParent();
-                let pointStr = addPointLabel(node: node as! SKSpriteNode)
-                score += Int(pointStr)!;
-                scoreArr[0].text = String(score);
+        
+        if state == .play {
+            if let touch = touches.first {
+                let location = touch.location(in: self);
+                let node = atPoint(location);
                 
-            } else if node.name == "bomb" {
-                node.removeFromParent()
-                let pointStr = subtractPointLabel(node: node as! SKSpriteNode)
-                score -= Int(pointStr)!
-                scoreArr[0].text = String(score)
+                if node.name == "block" {
+                    node.removeFromParent();
+                    let pointStr = addPointLabel(node: node as! SKSpriteNode)
+                    score += Int(pointStr)!;
+                    scoreArr[0].text = String(score);
+                    
+                } else if node.name == "bomb" {
+                    node.removeFromParent()
+                    let pointStr = subtractPointLabel(node: node as! SKSpriteNode)
+                    score -= Int(pointStr)!
+                    scoreArr[0].text = String(score)
+                }
+                
+                if node.name == "pauseButton" {
+                    
+                    state = .pause
+                    self.view?.isPaused = true
+                }
+            }
+        } else if state == .pause {
+            if let touch = touches.first {
+                let location = touch.location(in: self)
+                let node = atPoint(location)
+                
+                if node.name == "pauseButton" {
+                    state = .play
+                    self.view?.isPaused = false
+                }
             }
             
-            if node.name == "pause" {
-                self.view?.isPaused = !(self.view?.isPaused)!
-            }
-      
         }
     }
 }

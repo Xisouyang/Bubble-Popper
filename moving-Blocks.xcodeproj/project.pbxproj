@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5D0759EF2154500C00AC9D50 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0759EE2154500C00AC9D50 /* EndGameScene.swift */; };
 		5D2F010F21767F8B00BA3147 /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2F010E21767F8B00BA3147 /* StartScene.swift */; };
+		5DCD07292179197500B9A350 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD07282179197500B9A350 /* Buttons.swift */; };
 		5DE790482160553B0092263A /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE790472160553B0092263A /* Labels.swift */; };
 		5DF18AAD215ADF8200C03102 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF18AAC215ADF8200C03102 /* Box.swift */; };
 		D8A7EBED214AA9C30022E043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7EBEC214AA9C30022E043 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		5D0759EE2154500C00AC9D50 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
 		5D2F010E21767F8B00BA3147 /* StartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScene.swift; sourceTree = "<group>"; };
+		5DCD07282179197500B9A350 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		5DE790472160553B0092263A /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		5DF18AAC215ADF8200C03102 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		D8A7EBE9214AA9C30022E043 /* moving-Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moving-Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +69,7 @@
 				D8A7EBEC214AA9C30022E043 /* AppDelegate.swift */,
 				D8A7EBF2214AA9C30022E043 /* RunningGameScene.swift */,
 				5D2F010E21767F8B00BA3147 /* StartScene.swift */,
+				5DCD07282179197500B9A350 /* Buttons.swift */,
 				5DF18AAC215ADF8200C03102 /* Box.swift */,
 				5DE790472160553B0092263A /* Labels.swift */,
 				5D0759EE2154500C00AC9D50 /* EndGameScene.swift */,
@@ -157,6 +160,7 @@
 				5DF18AAD215ADF8200C03102 /* Box.swift in Sources */,
 				D8A7EBF5214AA9C30022E043 /* GameViewController.swift in Sources */,
 				D8A7EBED214AA9C30022E043 /* AppDelegate.swift in Sources */,
+				5DCD07292179197500B9A350 /* Buttons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

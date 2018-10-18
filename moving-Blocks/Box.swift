@@ -27,9 +27,11 @@ class Box: SKSpriteNode {
     init(view: SKView) {
         super.init(texture: nil, color: .red, size: CGSize(width: CGFloat(random) + 20, height: CGFloat(random) + 20))
         
+        view.scene?.anchorPoint = CGPoint(x: 0, y: 0)
+        
         let xPos = CGFloat(arc4random_uniform(UInt32((view.scene?.size.width)!)))
         let yPos = CGFloat(arc4random_uniform(UInt32((view.scene?.size.height)!)))
-        let xBuffer = CGFloat(50)
+        let xBuffer = CGFloat(arc4random_uniform(30))
         let yBuffer = CGFloat(100)
         
         color = randomColor();
@@ -47,7 +49,7 @@ class Box: SKSpriteNode {
         }
         
         if position.x > 250 || position.x < 50 {
-            position.x = CGFloat(arc4random_uniform(50)) + xBuffer;
+            position.x = CGFloat(arc4random_uniform(340)) + xBuffer;
         }
         
         print(position.x)
@@ -79,8 +81,9 @@ class Box: SKSpriteNode {
         
         let delete = SKAction.run {
             self.deleteBlock(node: node)
-            score -= Int(arc4random_uniform(4) + 1);
-            
+            if node.name == "block" {
+                score -= Int(arc4random_uniform(4) + 1);
+            }
           scoreArr[0].text = String(score);
         }
         let blockSequence = SKAction.sequence([moveUp, delete]);
