@@ -14,6 +14,9 @@ class EndGameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        let background = Background()
+        addChild(background)
+        
         let endName = "OverLabel"
         let restartName: String? = "ReplayLabel"
         let fontSize: CGFloat = 40;

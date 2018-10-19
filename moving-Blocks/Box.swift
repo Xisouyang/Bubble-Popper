@@ -27,13 +27,6 @@ class Box: SKSpriteNode {
     init(view: SKView) {
         super.init(texture: nil, color: .red, size: CGSize(width: CGFloat(random) + 20, height: CGFloat(random) + 20))
         
-        view.scene?.anchorPoint = CGPoint(x: 0, y: 0)
-        
-        let xPos = CGFloat(arc4random_uniform(UInt32((view.scene?.size.width)!)))
-        let yPos = CGFloat(arc4random_uniform(UInt32((view.scene?.size.height)!)))
-        let xBuffer = CGFloat(arc4random_uniform(30))
-        let yBuffer = CGFloat(100)
-        
         color = randomColor();
         
         if color == .red {
@@ -41,19 +34,8 @@ class Box: SKSpriteNode {
         } else {
             name = "block"
         }
-        position.x = xPos
-        position.y = yPos
-        
-        if position.y > 350 || position.y < 100 {
-            position.y = CGFloat(arc4random_uniform(100)) + yBuffer;
-        }
-        
-        if position.x > 250 || position.x < 50 {
-            position.x = CGFloat(arc4random_uniform(340)) + xBuffer;
-        }
-        
-        print(position.x)
-        print(position.y)
+       let position = CGPoint(x: CGFloat(arc4random_uniform(320) + 20), y: CGFloat(arc4random_uniform(350) + 50))
+        self.position = position
     }
     
     

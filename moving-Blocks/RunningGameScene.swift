@@ -25,6 +25,9 @@ class RunningGameScene: SKScene {
     // Called when the scene has been displayed
     override func didMove(to view: SKView) {
         
+        let background = Background()
+        addChild(background)
+        
         scoreArr = [];
         score = 1;
         
@@ -32,7 +35,7 @@ class RunningGameScene: SKScene {
         createStateButtons()
         
         /* starts the game */
-        let delay = SKAction.wait(forDuration: 2);
+        let delay = SKAction.wait(forDuration: 1);
         let runSequence = SKAction.run {
             self.startSequence();
         }
@@ -147,6 +150,7 @@ class RunningGameScene: SKScene {
                     
                     state = .pause
                     self.view?.isPaused = true
+                    
                 }
             }
         } else if state == .pause {
