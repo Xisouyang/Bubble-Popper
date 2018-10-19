@@ -133,7 +133,7 @@ class RunningGameScene: SKScene {
                 let location = touch.location(in: self);
                 let node = atPoint(location);
                 
-                if node.name == "block" {
+                if node.name == "bubble" {
                     node.removeFromParent();
                     let pointStr = addPointLabel(node: node as! SKSpriteNode)
                     score += Int(pointStr)!;
@@ -163,7 +163,6 @@ class RunningGameScene: SKScene {
                     self.view?.isPaused = false
                 }
             }
-            
         }
     }
 }

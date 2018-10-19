@@ -20,20 +20,26 @@ class Box: SKSpriteNode {
     
     
     func randomColor() -> UIColor {
-        let colorArr : [UIColor] = [.blue, .cyan, .yellow, .green, .orange, .purple, .red]
-        return colorArr[Int(arc4random_uniform(7))];
+        let colorArr : [UIColor] = [.red, .blue]
+        return colorArr[Int(arc4random_uniform(2))];
     }
     
     init(view: SKView) {
         super.init(texture: nil, color: .red, size: CGSize(width: CGFloat(random) + 20, height: CGFloat(random) + 20))
         
+        let mineTexture = SKTexture(imageNamed: "naval-mine-asset")
+        let bubbleTexure = SKTexture(imageNamed: "blue-bubble-asset")
+        
         color = randomColor();
         
         if color == .red {
+            texture = mineTexture
             name = "bomb"
         } else {
-            name = "block"
+            texture = bubbleTexure
+            name = "bubble"
         }
+        
        let position = CGPoint(x: CGFloat(arc4random_uniform(320) + 20), y: CGFloat(arc4random_uniform(350) + 50))
         self.position = position
     }
@@ -63,7 +69,7 @@ class Box: SKSpriteNode {
         
         let delete = SKAction.run {
             self.deleteBlock(node: node)
-            if node.name == "block" {
+            if node.name == "bubble" {
                 score -= Int(arc4random_uniform(4) + 1);
             }
           scoreArr[0].text = String(score);
