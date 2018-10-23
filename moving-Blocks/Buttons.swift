@@ -20,10 +20,6 @@ class Buttons: SKSpriteNode {
         self.name = name
     }
     
-    func changeState(button: Buttons) {
-        button.isHidden = !button.isHidden
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

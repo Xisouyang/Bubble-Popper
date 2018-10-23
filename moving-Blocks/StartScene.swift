@@ -12,7 +12,7 @@ import SpriteKit
 class StartScene: SKScene {
     
     override func didMove(to view: SKView) {
-        let titleText: String = "Block Pop"
+        let titleText: String = "Bubble Popper"
         let startButtonText: String = "Start"
         let color = UIColor.white;
         let font = "Futura-Bold";

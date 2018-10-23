@@ -27,7 +27,7 @@ class Box: SKSpriteNode {
     init(view: SKView) {
         super.init(texture: nil, color: .red, size: CGSize(width: CGFloat(random) + 20, height: CGFloat(random) + 20))
         
-        let mineTexture = SKTexture(imageNamed: "naval-mine-asset")
+        let mineTexture = SKTexture(imageNamed: "water_mine")
         let bubbleTexure = SKTexture(imageNamed: "blue-bubble-asset")
         
         color = randomColor();
