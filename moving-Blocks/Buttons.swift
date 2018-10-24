@@ -19,7 +19,6 @@ class Buttons: SKSpriteNode {
         self.isHidden = isHidden
         self.name = name
         
-        var test = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
