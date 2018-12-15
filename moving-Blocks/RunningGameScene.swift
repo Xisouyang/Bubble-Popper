@@ -9,10 +9,14 @@
 import SpriteKit
 import GameplayKit
 
+/* Neccessary global variables - accessed in Box.swift */
 var score = 1;
 var scoreArr: [SKLabelNode] = [];
-var pauseButton: Buttons?
 
+/* Instantiated as global variable so can access in the touch methods below */
+private var pauseButton: Buttons?
+
+/* Keep track of game state */
 enum GameState {
     case play
     case pause
@@ -22,18 +26,17 @@ var state: GameState = .play
 
 class RunningGameScene: SKScene {
     
-//    var pauseButton = Buttons()
-    
-    
     // Called when the scene has been displayed
     override func didMove(to view: SKView) {
         
         let background = Background()
         addChild(background)
         
+        /* Need to restart the game */
         scoreArr = [];
         score = 1;
         
+        /* Add neccessary elements */
         scoreLabel()
         createStateButtons()
         
@@ -72,6 +75,7 @@ class RunningGameScene: SKScene {
         addChild(pauseButton!)
     }
     
+    /* Bigger bubbles score less points */
     func addPoint(node: SKSpriteNode) -> String {
         let size = node.size
         var pointStr = "1"
@@ -95,12 +99,14 @@ class RunningGameScene: SKScene {
     /* helper function to add point labels when user successfully clicks node */
     func addPointLabel(node: SKSpriteNode) -> String {
         
+        /* instantiate arguments for label initialization */
         let addition = "+";
         let pointsStr = addPoint(node: node)
         let buffer: CGFloat = 25;
         let aNode = node;
         aNode.position.x = aNode.position.x - buffer;
         
+        /* create point label */
         let pointLabel = Labels(text: (addition + pointsStr), color: .white, fontSize: 25, font: "Futura-Bold", position: aNode.position, name: "addPointsLabel");
         addChild(pointLabel);
         pointLabel.pointLabelAction();
@@ -108,6 +114,7 @@ class RunningGameScene: SKScene {
         return pointsStr;
     }
     
+    /* same as add^ but opposite */
     func subtractPointLabel(node: SKSpriteNode) -> String {
         let subtraction = "-";
         let pointsStr = String(arc4random_uniform(4) + 1)
@@ -129,7 +136,11 @@ class RunningGameScene: SKScene {
         }
     }
     
-    /* when block touched, delete block and increase score */
+    /*
+       - when bubble touched, delete bubble and increase score
+       - when mine touched, delete mine and decrease score
+       - when pause button touched, pause game, then continue game when play button touched
+     */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if state == .play {

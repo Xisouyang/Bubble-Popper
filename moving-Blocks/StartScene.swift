@@ -11,7 +11,10 @@ import SpriteKit
 
 class StartScene: SKScene {
     
+    /* run this when app loads up, first screen */
     override func didMove(to view: SKView) {
+        
+        /* initialize arguments for label instantiation */
         let titleText: String = "Bubble Popper"
         let startButtonText: String = "Start"
         let color = UIColor.white;
@@ -28,6 +31,7 @@ class StartScene: SKScene {
 //        self.view?.addSubview(backgroundNode)
         
         
+        /* create title label and start button */
         let titleLabel = Labels(text: titleText, color: color, fontSize: fontSize, font: font, position: titlePosition, name: "title")
         addChild(titleLabel)
         
@@ -35,6 +39,7 @@ class StartScene: SKScene {
         addChild(startButtonLabel)
     }
     
+    /* when start pressed, move to running game scene */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         if let touch = touches.first {
             let location = touch.location(in: self);

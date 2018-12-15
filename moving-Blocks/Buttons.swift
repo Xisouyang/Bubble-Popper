@@ -20,11 +20,11 @@ class Buttons: SKSpriteNode {
         self.name = name
     }
     
-    func changeImg() {
-        if state == .pause {
-            self.texture = SKTexture(imageNamed: "play-asset")
-        }
-    }
+//    func changeImg() {
+//        if state == .pause {
+//            self.texture = SKTexture(imageNamed: "play-asset")
+//        }
+//    }
     
     
     required init?(coder aDecoder: NSCoder) {

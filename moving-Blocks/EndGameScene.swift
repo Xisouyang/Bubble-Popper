@@ -35,6 +35,7 @@ class EndGameScene: SKScene {
         addChild(restartLabel)
     }
     
+    /* if user touches restart, restarts the game */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         if let touch = touches.first {
             let location = touch.location(in: self);

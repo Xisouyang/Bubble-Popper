@@ -19,10 +19,10 @@ class Box: SKSpriteNode {
     var buffer = 100;
     let gameInstance = RunningGameScene();
     
-    
+    /* returns random color to decide whether node spawned is bubble or mine */
     func randomColor() -> UIColor {
-        let colorArr : [UIColor] = [.red, .blue]
-        return colorArr[Int(arc4random_uniform(2))];
+        let colorArr : [UIColor] = [.red, .blue, .blue]
+        return colorArr[Int(arc4random_uniform(3))];
     }
     
     init(view: SKView) {
@@ -33,6 +33,7 @@ class Box: SKSpriteNode {
         
         color = randomColor();
         
+        /* decide bubble or mine */
         if color == .red {
             texture = mineTexture
             name = "bomb"
@@ -41,19 +42,10 @@ class Box: SKSpriteNode {
             name = "bubble"
         }
         
+        /* where node spawns on screen */
         let position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(screenWidth.x * 0.9)) + 20), y: CGFloat(arc4random_uniform(UInt32(screenHeight.y * 0.2))))
-       self.position = position
-        
-//        let position = CGPoint(x: Double(screenWidth.x * CGFloat(0.4)), y: Double(screenHeight.y * CGFloat()))
+       self.position = position        
     }
-    
-    
-    /* creates block */
-//    func createBlock() -> SKSpriteNode {
-//        let node = Box();
-//        addChild(node);
-//        return node;
-//    }
     
     /* delete block */
     func deleteBlock(node: SKSpriteNode) {
