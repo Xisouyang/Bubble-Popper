@@ -18,8 +18,14 @@ class Buttons: SKSpriteNode {
         self.position = position
         self.isHidden = isHidden
         self.name = name
-        
     }
+    
+    func changeImg() {
+        if state == .pause {
+            self.texture = SKTexture(imageNamed: "play-asset")
+        }
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

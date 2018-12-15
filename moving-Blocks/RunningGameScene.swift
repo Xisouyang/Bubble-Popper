@@ -11,15 +11,18 @@ import GameplayKit
 
 var score = 1;
 var scoreArr: [SKLabelNode] = [];
+var pauseButton: Buttons?
 
 enum GameState {
     case play
     case pause
 }
+
 var state: GameState = .play
 
-
 class RunningGameScene: SKScene {
+    
+//    var pauseButton = Buttons()
     
     
     // Called when the scene has been displayed
@@ -54,7 +57,7 @@ class RunningGameScene: SKScene {
     
     /* create score label */
     func scoreLabel() {
-        let score = Labels(text: "1", color: .white, fontSize: 40, font: "Futura-Bold", position: CGPoint(x: (self.size.width / 2), y: 550), name: "scoreLabel");
+        let score = Labels(text: "1", color: .white, fontSize: 40, font: "Futura-Bold", position: CGPoint(x: (self.size.width / 2), y: self.size.height * 0.8), name: "scoreLabel");
 //        score.zPosition = 4;
         scoreArr.append(score);
         addChild(score);
@@ -62,16 +65,17 @@ class RunningGameScene: SKScene {
     
     func createStateButtons() {
         
-        let position = CGPoint(x: (self.size.width / 2) + 140, y: 600);
+        let position = CGPoint(x: (self.size.width * 0.9), y: self.size.height * 0.9);
         let size = CGSize(width: 40, height: 40)
+        pauseButton = Buttons(texture: SKTexture(imageNamed: "pause-asset"), position: position, isHidden: false, name: "pauseButton")
         
-        var pauseButton = Buttons(texture: SKTexture(imageNamed: "pause-asset"), position: position, isHidden: false, name: "pauseButton")
-        addChild(pauseButton)
+        addChild(pauseButton!)
     }
     
     func addPoint(node: SKSpriteNode) -> String {
         let size = node.size
         var pointStr = "1"
+        
         switch size {
         case let size where size.width >= CGFloat(20) && size.width < CGFloat(30):
             pointStr = String(4)
@@ -147,20 +151,26 @@ class RunningGameScene: SKScene {
                 }
                 
                 if node.name == "pauseButton" {
-                    
-                    state = .pause
-                    self.view?.isPaused = true
-                    
+                    let pauseState = SKAction.run {
+                        state = .pause
+                        self.view?.isPaused = true
+                    }
+                    let changeTexture = SKAction.setTexture(SKTexture(imageNamed: "play-asset"))
+                    var whenPaused = SKAction.sequence([changeTexture, pauseState])
+                    pauseButton?.run(whenPaused)
                 }
             }
         } else if state == .pause {
             if let touch = touches.first {
                 let location = touch.location(in: self)
                 let node = atPoint(location)
+                // button. SKTexture (name" )
+                
                 
                 if node.name == "pauseButton" {
-                    state = .play
+                    pauseButton?.texture = SKTexture(imageNamed: "pause-asset")
                     self.view?.isPaused = false
+                    state = .play
                 }
             }
         }

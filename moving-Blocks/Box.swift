@@ -12,7 +12,8 @@ import SpriteKit
 class Box: SKSpriteNode {
     
     /* setup variables */
-    let top = CGPoint(x: 0, y: 550);
+    let screenHeight = CGPoint(x: 0, y: UIScreen.main.bounds.height * 0.95);
+    let screenWidth = CGPoint(x: UIScreen.main.bounds.width * 0.95, y: 0)
     let angle : CGFloat = 30;
     let random = arc4random_uniform(30);
     var buffer = 100;
@@ -40,8 +41,10 @@ class Box: SKSpriteNode {
             name = "bubble"
         }
         
-       let position = CGPoint(x: CGFloat(arc4random_uniform(320) + 20), y: CGFloat(arc4random_uniform(350) + 50))
-        self.position = position
+        let position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(screenWidth.x * 0.9)) + 20), y: CGFloat(arc4random_uniform(UInt32(screenHeight.y * 0.2))))
+       self.position = position
+        
+//        let position = CGPoint(x: Double(screenWidth.x * CGFloat(0.4)), y: Double(screenHeight.y * CGFloat()))
     }
     
     
@@ -65,7 +68,7 @@ class Box: SKSpriteNode {
      */
     func blockActions(node: SKSpriteNode) {
         let randomTime = arc4random_uniform(15);
-        let moveUp = SKAction.moveBy(x: 0, y: top.y - node.position.y, duration: TimeInterval(randomTime))
+        let moveUp = SKAction.moveBy(x: 0, y: screenHeight.y - node.position.y, duration: TimeInterval(randomTime))
         
         let delete = SKAction.run {
             self.deleteBlock(node: node)

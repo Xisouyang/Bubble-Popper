@@ -25,8 +25,8 @@ class EndGameScene: SKScene {
         let restartText = "Restart";
         let color = UIColor.white;
         let font = "Futura-Bold";
-        let endPosition = CGPoint(x: (self.size.width / 2), y: 550);
-        let restartPosition = CGPoint(x: (self.size.width / 2), y: 450);
+        let endPosition = CGPoint(x: (self.size.width / 2), y: self.size.height * 0.85);
+        let restartPosition = CGPoint(x: (self.size.width / 2), y: self.size.height * 0.75);
         
         let endLabel = Labels(text: endText, color: color, fontSize: fontSize, font: font, position: endPosition, name: endName);
         addChild(endLabel)
